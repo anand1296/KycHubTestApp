@@ -1,0 +1,57 @@
+<div class="sideNavMain">
+    <div class="logo">
+        <img [src]="main_logo" alt="main_logo">
+    </div>
+    <div class="sidenav_list_main">
+        <mat-nav-list>
+            <a mat-list-item routerLink="" [ngStyle]="{'background-color': currentNav==='Home'? 'dodgerblue' : ''}" (click)="currentNav='Home';">
+                <div class="icon-area">
+                    <div class="col-4 icon"><mat-icon>home</mat-icon></div>
+                    <div class="col-8 icon-text"><span class="nav-caption">Home</span></div>
+                </div>
+            </a>
+            <a mat-list-item routerLink="" [ngStyle]="{'background-color': currentNav==='AML check'? 'dodgerblue' : ''}" (click)="currentNav='AML check';">
+                <div class="icon-area">
+                    <div class="col-4 icon"><span class="material-icons">person_add_alt_1</span></div>
+                    <div class="col-8 icon-text"><span class="nav-caption">AML check</span></div>
+                </div>
+            </a>
+            <a mat-list-item routerLink="" [ngStyle]="{'background-color': currentNav==='Onboarding'? 'dodgerblue' : ''}" (click)="currentNav='Onboarding';">
+                <div class="icon-area">
+                    <div class="col-4 icon"><span class="material-icons">system_update_alt</span></div>
+                    <div class="col-8 icon-text"><span class="nav-caption">Onboarding</span></div>
+                </div>
+            </a>
+            <a mat-list-item routerLink="" [ngStyle]="{'background-color': currentNav==='Risk Policy'? 'dodgerblue' : ''}" (click)="currentNav='Risk Policy';">
+                <div class="icon-area">
+                    <div class="col-4 icon"><span class="material-icons">assignment</span></div>
+                    <div class="col-8 icon-text"><span class="nav-caption">Risk Policy</span></div>
+                </div>
+            </a>
+            <a mat-list-item routerLink="" [ngStyle]="{'background-color': currentNav==='Reports'? 'dodgerblue' : ''}" (click)="currentNav='Reports';">
+                <div class="icon-area">
+                    <div class="col-4 icon"><span class="material-icons">assignment</span></div>
+                    <div class="col-8 icon-text"><span class="nav-caption">Reports</span></div>
+                </div>
+            </a>
+            <a mat-list-item routerLink="" [ngStyle]="{'background-color': currentNav==='Settings'? 'dodgerblue' : ''}" (click)="currentNav='Settings';">
+                <div class="icon-area">
+                    <div class="col-4 icon"><span class="material-icons">assignment</span></div>
+                    <div class="col-8 icon-text"><span class="nav-caption">Settings</span></div>
+                </div>
+            </a>
+            <a mat-list-item routerLink="" [ngStyle]="{'background-color': currentNav==='Billing'? 'dodgerblue' : ''}" (click)="currentNav='Billing';">
+                <div class="icon-area">
+                    <div class="col-4 icon"><span class="material-icons">euro</span></div>
+                    <div class="col-8 icon-text"><span class="nav-caption">Billing</span></div>
+                </div>
+            </a>
+            <a mat-list-item routerLink="" class="footer-link" [ngStyle]="{'background-color': currentNav==='FAQs'? 'dodgerblue' : ''}" (click)="currentNav='FAQs';">
+                <div class="icon-area" >
+                    <div class="col-4 icon"><span class="material-icons">help_outline</span></div>
+                    <div class="col-8 icon-text"><span class="nav-caption">FAQs</span></div>
+                </div>
+            </a>
+        </mat-nav-list>
+    </div>
+</div>

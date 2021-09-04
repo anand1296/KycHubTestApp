@@ -1,0 +1,190 @@
+<div class="main">
+    <div class="row onboarding-main">
+        <div class="col-9 onboarding">
+            <div class="head">
+                <div class="title">CUSTOMER ONBOARDING</div>
+                <div class="tabs">
+                    <label [ngClass]="{'selected' : currentTab === 'Entity Search'}" (click)="currentTab='Entity Search';">Entity Search</label>
+                    <label [ngClass]="{'selected' : currentTab === 'AML Search'}" (click)="currentTab='AML Search';">AML Search</label>
+                    <label [ngClass]="{'selected' : currentTab === 'Onboarding List'}" (click)="currentTab='Onboarding List';">Onboarding List</label>
+                    
+                </div>
+                <div class="rule">
+                    <div class="text">Perform Search</div>
+                    <div class="line"><hr></div>
+                </div>
+            </div>
+            <div class="content">
+                <mat-card class="form-card">
+                    <mat-card-content>
+
+                        <!-- form1 -->
+                        <form *ngIf="formType==='individual'" [formGroup]="detailsForm" (ngSubmit)="onSearch()">
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    <mat-radio-group formControlName="type" required>
+                                        <mat-radio-button class="rad-btn" value="Individual" (click)="entityChanged('Individual')">Individual</mat-radio-button>
+                                        <mat-radio-button class="rad-btn" value="Legal Entity" (click)="entityChanged('Legal Entity')">Legal Entity</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label>First Name*</label>
+                                    <br>
+                                    <input formControlName="fname" type="text" placeholder="Type in your first name" required>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Last Name*</label>
+                                    <br>
+                                    <input formControlName="lname" type="text" placeholder="Type in your last name" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label>Country*</label>
+                                    <br>
+                                    <mat-select formControlName="country" name="country" required placeholder="Select a country">
+                                        <mat-option *ngFor="let country of countries" [value]="country">
+                                          {{country}}
+                                        </mat-option>
+                                    </mat-select>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Date of Birth*</label>
+                                    <br>
+                                    <input name="dob" formControlName="dob" matInput [matDatepicker]="picker" [disabled] placeholder="Select a date">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn-primary button" [disabled]="!detailsForm.valid">Search</button>
+                            </div>
+                        </form>
+
+                        <!-- form2 -->
+                        <form *ngIf="formType==='legal entity'" [formGroup]="detailsForm" (ngSubmit)="onSearch()">
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    <mat-radio-group formControlName="type" required>
+                                        <mat-radio-button class="rad-btn" value="Individual" (click)="entityChanged('Individual')">Individual</mat-radio-button>
+                                        <mat-radio-button class="rad-btn" value="Legal Entity" (click)="entityChanged('Legal Entity')">Legal Entity</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label>Company Name*</label>
+                                    <br>
+                                    <input formControlName="company_name" type="text" placeholder="Type in your first name" required>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Company ID*</label>
+                                    <br>
+                                    <input formControlName="company_id" type="text" placeholder="Type in your last name" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label>Country*</label>
+                                    <br>
+                                    <mat-select formControlName="country" name="country" required placeholder="Select a country">
+                                        <mat-option *ngFor="let country of countries" [value]="country">
+                                          {{country}}
+                                        </mat-option>
+                                    </mat-select>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Jurisdiction*</label>
+                                    <br>
+                                    <mat-select formControlName="jurisdiction" name="jurisdiction" required placeholder="Select a jurisdiction/state">
+                                        <mat-option *ngFor="let state of states" [value]="state">
+                                          {{state}}
+                                        </mat-option>
+                                    </mat-select>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn-primary button" [disabled]="!detailsForm.valid">Search</button>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+        <div class="col-3 know-more">
+            <div class="side-header">
+                <!-- material-icons -->
+                <span><mat-icon>notifications</mat-icon></span>
+                <span><mat-icon>account_circle</mat-icon></span>
+            </div>
+            <div class="content">
+                <mat-card>
+                    <mat-card-content>
+                        <div class="head">Know More</div>
+                        <p>
+                            Begin with the basic details of your customer/legal entity to perform an <b>AML search</b>. Your search is saved in the AML Search List. 
+                        </p>
+                        <p>
+                            Perform AML checks on legal entities as well on their UBOs and Directors.
+                        </p>
+                        <p [ngStyle]="{'color': 'red'}">
+                            Get early access to our Media Intelligence Product and search adverse articles for individuals and legal entities.
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showSearchResults" class="results-main col-9">
+        <div class="rule">
+            <div class="text">Search Results</div>
+            <div class="line"><hr></div>
+        </div>
+
+        <div class="table-container">
+            <table mat-table [dataSource]="dataSource" matSort matSortActive="Risk Status" matSortDisableClear matSortDirection="asc">
+                
+                <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{column.header}}</th>
+                    <td mat-cell *matCellDef="let row" [ngStyle]="{'color' : column.cell(row) === 'High Risk' ? 'red' : column.cell(row) === 'Low Risk' ? 'springgreen' : ''}"> {{column.cell(row)}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+
+        <div *ngIf="dataSource" class="row footer">
+            <div class="col-7">
+                <mat-card>
+                    <mat-card-content>
+                        <div class="footer-card">
+                            <p>Did not find what you were looking for?<br/><b>Begin Onboarding process</b> by creating new Profile.</p>
+                            <button class="btn-danger button">Create Profile</button>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-5">
+                <mat-card>
+                    <mat-card-content>
+                        <div class="footer-card">
+                            <p>Did not find what you were looking for?<br/><b>Search for Advertise Media</b> for individuals with no AML data.</p>
+                            <button class="btn-primary button">Search Advertise Media</button>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+        <div *ngIf="!dataSource" class="row footer center">
+            <div>
+                <p>No results found for the Legal Entity<br/>Begin onboarding process by creating Profile or contact Support</p>
+                <button class="btn-danger button">Create Profile</button>
+            </div>
+        </div>
+    </div>
+</div>
